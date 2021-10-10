@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Pictures(models.Model):
     title = models.CharField("Название", max_length=56)
     picture = models.URLField("Картина")
