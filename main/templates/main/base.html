@@ -15,22 +15,12 @@
 <!--расположить элементы в строку, т.е. по колонкам-->
     <nav>
         <ul class="list">
-            <li><a href="{% url 'page_1' %}"> Страница 1</a></li>
-            <li><a href="{% url 'page_2' %}"> Страница 2</a></li>
-            <li><a href="{% url 'page_3' %}"> Страница 3</a></li>
+            <li><a href="{% url 'home' %}">Домой</a></li>
+            <li><a href="{% url 'page_1' %}">Страница 1</a></li>
+            <li><a href="{% url 'page_2' %}">Страница 2</a></li>
+            <li><a href="{% url 'page_3' %}">Страница 3</a></li>
         </ul>
     </nav>
-<!--    боковая панель-->
-    <aside>
-        <a href="{% url 'home' %}"><img src="{% static 'main/img/linux.svg' %}" alt="Linux-Pinguino"></a>
-        <br>
-        <h3>Навигация</h3>
-        <ul>
-            <a href="{% url 'page_1' %}"><li><i class="fas fa-angle-right"></i> Страница 1</li></a>
-            <a href="{% url 'page_2' %}"><li><i class="fas fa-angle-right"></i> Страница 2</li></a>
-            <a href="{% url 'page_3' %}"><li><i class="fas fa-angle-right"></i> Страница 3</li></a>
-        </ul>
-    </aside>
 <!--    главный контент страницы-->
     <main>
         {% block content %}

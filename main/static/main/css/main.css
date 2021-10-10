@@ -3,24 +3,23 @@ body {
 }
 
 nav {
-    width: 50%;
+    width: 545px;
     margin: 0 auto;
+    position: center
 }
 
 nav:before {
     content: '';
     display: block;
     height: 50px;
-    width: 82%;
+    width: 545px;
     background: #fff;
     position: absolute;
-    /*left: 0;*/
-    right: 0;
     z-index: -1;
 }
 
 nav ul {
-    float: right;
+    float: center;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -46,45 +45,15 @@ nav ul a:hover {
     background: #007BFF;
 }
 
-aside {
-    position: fixed;
-    float: left;
-    background: #fff;
-    width: 18%;
-    min-height: 100vh;
-    color: #000;
-}
-
-aside img {
-    width: 50px;
-    float: center;
-    margin: 10px 25px;
-}
-
-aside h3 {
-
-    margin: 30px 10px;
-    font-size: 25px;
-}
-
-aside ul {list-style: none;}
-aside ul li {
-    color: #000;
-    display: block;
-    margin-top: 20px;
-    transition: transform .6s ease;
-}
-
-aside ul li:hover, aside ul a:hover {
-    color:#000;
-    text-decoration: none;
-    transform: scale(1.1);
-}
-
 main {
-    float: right;
+    float: absolute;
     color: #000;
     margin-top: 60px;
     text-align: center;
-    width: 75%;
+    width: 100%;
+}
+
+div img {
+    width: 40%;
+    float: center;
 }

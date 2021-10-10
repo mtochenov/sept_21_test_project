@@ -1,4 +1,5 @@
 {% extends "main/base.html" %}
+{% load static %}
 
 {% block title %}
     {{ title }}
@@ -6,5 +7,12 @@
 
 {% block content %}
     <h2>Страница № 1</h2>
+    <br>
+    <div>
+        <img src="{% static 'main/img/desert.jpg' %}" alt="desert">
+    </div>
+    <br>
+    <br>
     <a href="/" class="btn btn-primary" role="button" aria-disabled="true">Home</a>
+
 {% endblock %}
