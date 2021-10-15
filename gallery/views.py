@@ -1,18 +1,31 @@
 from django.shortcuts import render, redirect
 from .models import Pictures
 from .forms import PicturesForm
-from django.views.generic import DetailView, UpdateView, DeleteView, ListView, CreateView
+from django.views.generic import DetailView, UpdateView, DeleteView, ListView, CreateView  # TODO: Задействовать все указанные классы
 
 
 class PicturesListView(ListView):
     model = Pictures
     paginate_by = 1
-    template_name = 'gallery/gallery.html'
-    context_object_name = 'pictures'
-    ordering = ['-id']
+    template_name = "gallery/gallery.html"
+    context_object_name = "pictures"
+    ordering = ["-id"]
 
 
-def gallery_add(request):
+class PicturesDetailView(DetailView):
+    model = Pictures
+    template_name = "gallery/detail.html"
+    context_object_name = "pictures"
+
+
+class PicturesDeleteView(DeleteView):
+    model = Pictures
+    success_url = '/gallery/'
+    template_name = 'gallery/delete.html'
+    context_object_name = "pictures"
+
+
+def gallery_add(request):  # TODO: Заменить на CreateView
     error = ""
     if request.method == "POST":
         form = PicturesForm(request.POST)
@@ -28,11 +41,4 @@ def gallery_add(request):
         "form": form,
         "error": error,
     }
-    return render(request, "gallery/gallery_add.html", data)
-
-
-class PicturesDeleteView(DeleteView):
-    model = Pictures
-    success_url = '/gallery/'
-    template_name = 'gallery/gallery_delete.html'
-    context_object_name = 'article'
+    return render(request, "gallery/add.html", data)

@@ -9,9 +9,10 @@
         <form method="post">
             {% csrf_token %}
             <h3>Удаление картины</h3><br>
-            <h1>{{ picture.title }}</h1>
-            <p>{{ picture.picture }}</p><br>
-            <p>{{ picture.description }}</p><br>
+            <h3>{{ pictures.title }}</h3>
+            <div>
+                <img src="{{ pictures.picture }}" alt="{{ pictures.title }}">
+            </div><br>
             <p>Вы точно хотите удалить эту картину?</p>
             <button class="btn btn-danger" type="submit">Да, удалить</button>
             <a href="{% url 'gallery' %}" class="btn btn-info">Не удалять</a>

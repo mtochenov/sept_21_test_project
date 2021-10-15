@@ -1,0 +1,22 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+    {{ picture.title }}
+{% endblock %}
+
+{% block content %}
+    <div class="features">
+        <form method="post">
+            <div>
+                <h3>{{ pictures.title }}</h3>
+                <div>
+                    <img src="{{ pictures.picture }}" alt="{{ pictures.title }}">
+                </div>
+                <p>{{ pictures.description }}</p><br>
+                <a href="{% url 'gallery' %}" class="btn btn-info">Назад в галерею</a>
+                <a href="{% url 'delete' pictures.id %}" class="btn btn-danger">Удалить</a>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
