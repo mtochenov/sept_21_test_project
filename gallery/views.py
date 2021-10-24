@@ -1,7 +1,9 @@
-from django.shortcuts import render, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
 from .models import Pictures
 from .forms import PicturesForm
-from django.views.generic import DetailView, UpdateView, DeleteView, ListView, CreateView  # TODO: Задействовать все указанные классы
+from django.views.generic import DetailView, UpdateView, DeleteView, ListView, CreateView
 
 
 class PicturesListView(ListView):
@@ -18,27 +20,24 @@ class PicturesDetailView(DetailView):
     context_object_name = "pictures"
 
 
-class PicturesDeleteView(DeleteView):
+class PicturesCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):  # Требуется аутентификация
+    model = Pictures
+    form_class = PicturesForm
+    template_name = "gallery/add.html"
+    success_url = reverse_lazy("gallery")  # Заменяет def get_absolute_url в models.py
+    success_message = "Картина успешно добавлена"
+
+
+class PicturesUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = Pictures
+    form_class = PicturesForm
+    template_name = "gallery/update.html"
+    success_url = reverse_lazy("gallery")
+    success_message = "Картина успешно отредактирована"
+
+
+class PicturesDeleteView(LoginRequiredMixin, DeleteView):
     model = Pictures
     success_url = '/gallery/'
     template_name = 'gallery/delete.html'
     context_object_name = "pictures"
-
-
-def gallery_add(request):  # TODO: Заменить на CreateView
-    error = ""
-    if request.method == "POST":
-        form = PicturesForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("gallery")
-        else:
-            error = "Форма была некорректно заполнена"
-
-    form = PicturesForm()
-    data = {
-        "title": "Добавьте картину",
-        "form": form,
-        "error": error,
-    }
-    return render(request, "gallery/add.html", data)

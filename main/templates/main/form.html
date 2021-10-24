@@ -1,0 +1,9 @@
+<div class="row">
+    <div class="registration">
+        <form action="{{action}}" method="post">  {# enctype="multipart/form-data" #}
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-outline-primary">{{ button }}</button>
+        </form>
+    </div>
+</div>

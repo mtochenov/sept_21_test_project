@@ -5,9 +5,13 @@
 {% endblock %}
 
 {% block content %}
-    <h2>{{ title }}</h2>
 
-    <p>Just some text</p><br>
+    <h3>Museum of art fraud</h3>
+    <i>"Interstate 60"</i><br>
+    <i>Музей поддельного искуства, как дань уважения фильму "Трасса 60"</i><br><br>
     <a href="/gallery" class="btn btn-primary" role="button" aria-disabled="true">Галерея</a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'add' %}" class="btn btn-success">Добавить картину</a>
+    {% endif %}
 
 {% endblock %}

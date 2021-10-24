@@ -1,5 +1,5 @@
 {% load static %}
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,16 +9,28 @@
     <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
 </head>
 <body>
-<!--    шапка-->
-<!--расположить элементы в строку, т.е. по колонкам-->
-    <nav>
+<!--    шапка страницы-->
+    <menu>
         <ul class="list">
-            <li><a href="{% url 'home' %}">Домой</a></li>
-            <li><a href="{% url 'page_1' %}">Страница 1</a></li>
-            <li><a href="{% url 'page_2' %}">Страница 2</a></li>
-            <li><a href="{% url 'page_3' %}">Страница 3</a></li>
+            <li><a href="{% url 'home' %}">Главная</a></li>
+            <li><a href="{% url 'gallery' %}">Галерея</a></li>
+            {% if user.is_authenticated %}
+                <li>
+                    <p>Hello, {{user.username}}</p>
+                </li>
+                <li>
+                    <a href="{% url 'logout' %}">Выйти</a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{% url 'login' %}">Войти</a>
+                </li>
+                <li>
+                    <a href="{% url 'registration' %}">Регистрация</a>
+                </li>
+            {% endif %}
         </ul>
-    </nav>
+    </menu>
 <!--    главный контент страницы-->
     <main>
         {% block content %}
